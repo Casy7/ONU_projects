@@ -1,0 +1,52 @@
+[
+    {
+        "item": "Xbox",
+        "price": 400,
+        "buyer": "John"
+    },
+    {
+        "item": "PS4",
+        "price": 400,
+        "buyer": "Kevin"
+    },
+    {
+        "item": "TV",
+        "price": 2000,
+        "buyer": "Ann"
+    },
+    {
+        "item": "Fridge",
+        "price": 800,
+        "buyer": "Ann"
+    },
+    {
+        "item": "Iphone",
+        "price": 1000,
+        "buyer": "Ann"
+    },
+    {
+        "item": "Nexus",
+        "price": 700,
+        "buyer": "Kevin"
+    },
+    {
+        "item": "Microwave",
+        "price": 150,
+        "buyer": "John"
+    },
+    {
+        "item": "Kettle",
+        "price": 100,
+        "buyer": "Rosa"
+    },
+    {
+        "item": "Washing machine",
+        "price": 400,
+        "buyer": "Kevin"
+    },
+    {
+        "item": "PC",
+        "price": 1400,
+        "buyer": "Rosa"
+    }
+]

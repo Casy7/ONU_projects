@@ -1,0 +1,41 @@
+a=[0,3,4,5,5,7,9,11,12,13,13,19]
+#a=[0]
+#a=[1.2,1.4]
+b=float(input())
+if(len(a)==1):
+	if(b<=a[0]):
+		if(b%1==0):
+			b=int(b)
+		a=[b]+a
+	else:
+		if(b%1==0):
+			b=int(b)
+		a=a+[b]
+else:
+	L=0
+	R=len(a)-1
+	for j in range(len(a)//2+1):
+		if((L+R)/2%1==0):
+			i=int((L+R)/2)
+		else:
+			i=int((L+R)/2+1)
+		if(a[i-1]<=b<=a[i]):
+			if(b%1==0):
+				b=int(b)
+			a=a[0:i]+[b]+a[i:]
+			break
+		elif(b>=a[len(a)-1]):
+			if(b%1==0):
+				b=int(b)			
+			a=a+[b]
+			break
+		elif(b<=a[0]):
+			if(b%1==0):
+				b=int(b)
+			a=[b]+a
+			break
+		elif(b<a[i]):
+			R=i
+		else:
+			L=i
+print(a)

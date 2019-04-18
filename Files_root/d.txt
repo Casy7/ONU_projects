@@ -1,0 +1,3 @@
+Model: mini 
+0 
+Wheels: 6

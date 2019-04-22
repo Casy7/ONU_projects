@@ -1,15 +1,15 @@
-from math import sin
+from math import sin, tan
 """Вычислить значение функции"""
 
 
 def f(x):
-    if x > 0:
-        return x**5
-    elif -1 < x <= 0:
-        y = x**2**0.5**(1/3)+sin(x**3)
-        return y
+    if x >= 0:
+        return sin(x**2+x**0.5)
+    # elif -1 < x <= 0:
+    #     y = x**2**0.5**(1/3)+sin(x**3)
+    #     return y
     else:
-        return 10-x
+        return x**2*tan(x**(1./3))
 
 
 def try_func():
@@ -24,7 +24,9 @@ def try_func():
 def tests():
     list_of_tests = [
         12,
-        10,
+        9999,
+        -10.02,
+        "test_to_error",
         3
     ]
     for i in list_of_tests:

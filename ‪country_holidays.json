@@ -1,0 +1,292 @@
+[
+    {
+        "date": "01.01",
+        "name": "Last Day of Kwanzaa",
+        "public": false
+    },
+    {
+        "date": "01.01",
+        "name": "New Year's Day",
+        "public": true
+    },
+    {
+        "date": "06.01",
+        "name": "Epiphany",
+        "public": false
+    },
+    {
+        "date": "07.01",
+        "name": "Orthodox Christmas",
+        "public": false
+    },
+    {
+        "date": "15.01",
+        "name": "Martin Luther King, Jr. Day",
+        "public": true
+    },
+    {
+        "date": "02.02",
+        "name": "Groundhog Day",
+        "public": false
+    },
+    {
+        "date": "14.02",
+        "name": "Ash Wednesday",
+        "public": false
+    },
+    {
+        "date": "14.02",
+        "name": "Valentine's Day",
+        "public": false
+    },
+    {
+        "date": "19.02",
+        "name": "George Washington's Birthday",
+        "public": true
+    },
+    {
+        "date": "17.03",
+        "name": "St. Patrick's Day",
+        "public": false
+    },
+    {
+        "date": "25.03",
+        "name": "Palm Sunday",
+        "public": false
+    },
+    {
+        "date": "30.03",
+        "name": "Good Friday",
+        "public": false
+    },
+    {
+        "date": "01.04",
+        "name": "April Fools' Day",
+        "public": false
+    },
+    {
+        "date": "01.04",
+        "name": "Easter",
+        "public": false
+    },
+    {
+        "date": "22.04",
+        "name": "Earth Day",
+        "public": false
+    },
+    {
+        "date": "27.04",
+        "name": "National Arbor Day",
+        "public": false
+    },
+    {
+        "date": "01.05",
+        "name": "May Day",
+        "public": false
+    },
+    {
+        "date": "04.05",
+        "name": "Star Wars Day",
+        "public": false
+    },
+    {
+        "date": "05.05",
+        "name": "Cinco de Mayo",
+        "public": false
+    },
+    {
+        "date": "13.05",
+        "name": "Mother's Day",
+        "public": false
+    },
+    {
+        "date": "19.05",
+        "name": "Armed Forces Day",
+        "public": false
+    },
+    {
+        "date": "28.05",
+        "name": "Memorial Day",
+        "public": true
+    },
+    {
+        "date": "14.06",
+        "name": "Flag Day",
+        "public": false
+    },
+    {
+        "date": "17.06",
+        "name": "Father's Day",
+        "public": false
+    },
+    {
+        "date": "27.06",
+        "name": "Helen Keller Day",
+        "public": false
+    },
+    {
+        "date": "04.07",
+        "name": "Independence Day",
+        "public": true
+    },
+    {
+        "date": "26.08",
+        "name": "Women's Equality Day",
+        "public": false
+    },
+    {
+        "date": "03.09",
+        "name": "Labor Day",
+        "public": true
+    },
+    {
+        "date": "09.09",
+        "name": "National Grandparent's Day",
+        "public": false
+    },
+    {
+        "date": "11.09",
+        "name": "Patriot Day",
+        "public": false
+    },
+    {
+        "date": "17.09",
+        "name": "Citizenship Day",
+        "public": false
+    },
+    {
+        "date": "06.10",
+        "name": "German-American Day",
+        "public": false
+    },
+    {
+        "date": "08.10",
+        "name": "Columbus Day",
+        "public": true
+    },
+    {
+        "date": "09.10",
+        "name": "Leif Erikson Day",
+        "public": false
+    },
+    {
+        "date": "31.10",
+        "name": "Halloween",
+        "public": false
+    },
+    {
+        "date": "06.11",
+        "name": "Election Day",
+        "public": false
+    },
+    {
+        "date": "11.11",
+        "name": "Veterans Day",
+        "public": true
+    },
+    {
+        "date": "22.11",
+        "name": "Thanksgiving Day",
+        "public": true
+    },
+    {
+        "date": "23.11",
+        "name": "Black Friday",
+        "public": false
+    },
+    {
+        "date": "03.12",
+        "name": "First Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "04.12",
+        "name": "Second Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "05.12",
+        "name": "Third Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "06.12",
+        "name": "Fourth Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "07.12",
+        "name": "Fifth Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "07.12",
+        "name": "Pearl Harbor Remembrance Day",
+        "public": false
+    },
+    {
+        "date": "08.12",
+        "name": "Immaculate Conception of the Virgin Mary",
+        "public": false
+    },
+    {
+        "date": "08.12",
+        "name": "Sixth Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "09.12",
+        "name": "Seventh Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "10.12",
+        "name": "Eighth Day of Hanukkah",
+        "public": false
+    },
+    {
+        "date": "24.12",
+        "name": "Christmas Eve",
+        "public": false
+    },
+    {
+        "date": "25.12",
+        "name": "Christmas Day",
+        "public": true
+    },
+    {
+        "date": "26.12",
+        "name": "First Day of Kwanzaa",
+        "public": false
+    },
+    {
+        "date": "27.12",
+        "name": "Second Day of Kwanzaa",
+        "public": false
+    },
+    {
+        "date": "28.12",
+        "name": "Third Day of Kwanzaa",
+        "public": false
+    },
+    {
+        "date": "29.12",
+        "name": "Fourth Day of Kwanzaa",
+        "public": false
+    },
+    {
+        "date": "30.12",
+        "name": "Fifth Day of Kwanzaa",
+        "public": false
+    },
+    {
+        "date": "31.12",
+        "name": "New Year's Eve",
+        "public": true
+    },
+    {
+        "date": "31.12",
+        "name": "Sixth Day of Kwanzaa",
+        "public": false
+    }
+]

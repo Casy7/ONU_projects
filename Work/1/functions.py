@@ -1,5 +1,6 @@
 import requests
 import json
+import xlwt
 
 
 URL = "https://api.brain.com.ua/"   # Константа домена сайта
@@ -22,13 +23,13 @@ def get_categories(SID):
     return dict_of_categories
 
 
-def get_IDs():
-    # TODO Путь сделать относительным!
-    with open("Z:/Repositories/testrepo1/Work/1/get1.json",
-              "r",
-              encoding="UTF-8") as file:
-        json_file = json.load(file)
-
+def get_IDs_by_pricelist(json_file=None):
+    if json_file is None:
+        # TODO Путь сделать относительным!
+        with open("Z:/Repositories/testrepo1/Work/1/get1.json",
+                  "r",
+                  encoding="UTF-8") as file:
+            json_file = json.load(file)
     list_of_IDs = []
     for prop in json_file.keys():
         list_of_IDs.append(prop)
@@ -43,12 +44,24 @@ def get_props(ID, SID):
 
 def good_view(props):
     dict_good_props = {}
-    dict_good_props["Название"] = props["name"]
-    dict_good_props["Описание"] = props["description"]
-    dict_good_props["Цена, $"] = props["price"]
-    dict_good_props["Цена, UAH"] = props["price_uah"]
-    dict_good_props["Короткое описание"] = props["brief_description"]
-    options = props["options"].keys()
+    rules = {
+        "productID": "ID",
+        "name": "Название",
+        "articul": "Артикул",
+        "product_code": "Код товара",
+        "price": "Цена",
+        "brief_description": "Короткое описание",
+        "description": "Описание",
+        "warranty": "Гарантия, мес.",
+        "large_image": "Фото"
+    }
+    for rule in rules.keys():
+        dict_good_props[rule] = rules[rule]
+
+    main_props = {}
+    for propty in dict_good_props:
+        main_props[rules[propty]] = props[propty]
+    options = props["options"]
     new_options = {}
     counter = 0
 
@@ -57,6 +70,7 @@ def good_view(props):
         counter += 1
     main_props.update(new_options)
     print(main_props)
+    return main_props
 
 
 def get_ID(product):
@@ -68,6 +82,15 @@ def get_IDs(products_list):
     for product in products_list:
         list_of_IDs.append(product["productID"])
     return list_of_IDs
+
+
+def get_IDs_of_category(category_number, SID):
+    req_of_category = requests.get(URL + "products/" +
+                                   str(category_number)+"/"+SID).content
+    json_of_category = json.loads(req_of_category)["result"]["list"]
+    list_of_IDs = get_IDs(json_of_category)
+    return list_of_IDs
+
 # def get_product(ID, SID):
 
 

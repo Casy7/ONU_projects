@@ -51,7 +51,25 @@ def good_view(props):
     options = props["options"].keys()
     new_options = {}
     counter = 0
-    for option in options.keys():
-        new_options[option[str(counter)]["name"]
-                    ] = option[str(counter)]["value"]
-    print(new_options)
+
+    for option in options:
+        new_options[option["name"]] = option["value"]
+        counter += 1
+    main_props.update(new_options)
+    print(main_props)
+
+
+def get_ID(product):
+    return product["productID"]
+
+
+def get_IDs(products_list):
+    list_of_IDs = []
+    for product in products_list:
+        list_of_IDs.append(product["productID"])
+    return list_of_IDs
+# def get_product(ID, SID):
+
+
+# def props_to_table(props, line):
+#     with open("Z:\Repositories\testrepo1\Work\1\xl_test.xls","a")

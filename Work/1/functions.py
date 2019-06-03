@@ -91,6 +91,14 @@ def get_IDs_of_category(category_number, SID):
     list_of_IDs = get_IDs(json_of_category)
     return list_of_IDs
 
+
+def category_to_json(category_number, SID):
+    dict_of_info = []
+    for product_ID in functions.get_IDs_of_category(category_number, SID):
+        props = functions.good_view(functions.get_props(product_ID, SID))
+        # TODO statistics()
+        dict_of_info.append(props)
+
 # def get_product(ID, SID):
 
 

@@ -1,1 +1,1 @@
-print(3)
+# TODO Create a separately function, if nessesary

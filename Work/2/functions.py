@@ -106,6 +106,7 @@ def category_to_json(category_number, SID):
             break
 
 
+
 # def get_product(ID, SID):
 
 

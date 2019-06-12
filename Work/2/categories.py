@@ -64,4 +64,4 @@ def category_name_to_code(code):
             return name
 
 
-find_way(7682)
+find_way(category_name_to_code("Активное сетевое оборудование"))

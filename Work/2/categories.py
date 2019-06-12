@@ -34,7 +34,9 @@ def find_way(category_number=1484, list_of_ids=""):
                 str_out += " \""+category['name']+"\" >"
                 parent_id = category['parentID']
     str_out = str_out[:-2]
-    print(str_out)
+    list_final = str_out.split(" > ")
+    list_final.reverse()
+    print(" > ".join(list_final))
     return str_out
 
 
@@ -60,3 +62,6 @@ def category_name_to_code(code):
         if category['name'] == code:
             name = category['categoryID']
             return name
+
+
+find_way(7682)

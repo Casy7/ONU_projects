@@ -2,7 +2,7 @@
 
 import requests
 import json
-import dicttoxml
+import xlwt
 
 import functions
 
@@ -13,11 +13,18 @@ SID = functions.get_key()
 print(functions.get_categories(SID))
 functions.good_view(functions.get_props(47, SID))
 
-example_ssd = functions.category_to_json(1484, SID)
-xml = dicttoxml.dicttoxml(example_ssd).decode("utf-8")
-xml.replace("<root>","")
-xml.replace("</root>","")
-with open("Z:/Repositories/testrepo1/Work/1/xml_example.xml",
-          "w",
-          encoding="UTF8") as write_file:
-    write_file.write(xml)
+workbook = xlwt.Workbook()
+table = workbook.add_sheet('1')
+line = 1
+# TODO Check this code and simplify it.
+for product_ID in functions.get_IDs_of_category(1484, SID):
+    props = functions.good_view(functions.get_props(product_ID, SID))
+    column = 0
+    for prop in props:
+        table.write(line, column, prop)
+        table.write(line, column+1, props[prop])
+        column += 2
+    line += 1
+
+
+workbook.save('Z:/Repositories/testrepo1/Work/1/xl_test.xls')

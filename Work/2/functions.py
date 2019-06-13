@@ -2,6 +2,8 @@ import requests
 import json
 import xlwt
 
+import categories
+
 
 URL = "https://api.brain.com.ua/"   # Константа домена сайта
 
@@ -49,7 +51,7 @@ def good_view(props):
         "name": "Название",
         "articul": "Артикул",
         "product_code": "Код товара",
-        "price": "Цена",
+        "price_uah": "Цена",
         "brief_description": "Короткое описание",
         "description": "Описание",
         "warranty": "Гарантия, мес.",
@@ -57,6 +59,8 @@ def good_view(props):
     }
     for rule in rules.keys():
         dict_good_props[rule] = rules[rule]
+
+    category_way = categories.find_way(int(props["categoryID"]))
 
     main_props = {}
     for propty in dict_good_props:
@@ -68,6 +72,7 @@ def good_view(props):
     for option in options:
         new_options[option["name"]] = option["value"]
         counter += 1
+    main_props["Путь"] = category_way
     main_props.update(new_options)
     print(main_props)
     return main_props
@@ -106,6 +111,18 @@ def category_to_json(category_number, SID):
             break
 
 
+def category_to_list(category_number, SID):
+    list_of_info = []
+    c = 0
+    for product_ID in get_IDs_of_category(category_number, SID):
+        props = good_view(get_props(product_ID, SID))
+        # TODO statistics()
+        
+        list_of_info.append(props)
+        c += 1
+        if c == 20:
+            return list_of_info
+            break
 
 # def get_product(ID, SID):
 

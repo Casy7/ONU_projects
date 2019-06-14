@@ -49,8 +49,8 @@ def good_view(props):
     rules = {
         "productID": "ID",
         "name": "Название",
-        "articul": "Артикул",
         "product_code": "Код товара",
+        "articul": "Артикул",
         "price_uah": "Цена",
         "brief_description": "Короткое описание",
         "description": "Описание",
@@ -117,15 +117,30 @@ def category_to_list(category_number, SID):
     for product_ID in get_IDs_of_category(category_number, SID):
         props = good_view(get_props(product_ID, SID))
         # TODO statistics()
-        
+
         list_of_info.append(props)
         c += 1
         if c == 20:
             return list_of_info
             break
 
+
+def get_all_images(ID, SID):
+    req = requests.get(URL + "product_pictures/" +
+                                   str(ID)+"/"+SID).content
+    list_of_images = json.loads(req)["result"]
+    res_list = []
+    for number_of_image in range(5):
+        try:
+            res_list.append({"Фото"+str(number_of_image):list_of_images[number_of_image]['full_image']})
+        except IndexError:
+            res_list.append('')
+    return res_list
+    # TODO
 # def get_product(ID, SID):
 
 
 # def props_to_table(props, line):
 #     with open("Z:\Repositories\testrepo1\Work\1\xl_test.xls","a")
+
+print(get_all_images(292663, get_key()))

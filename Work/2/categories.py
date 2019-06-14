@@ -25,18 +25,18 @@ def find_way(category_number=1484, list_of_ids=""):
     now_id = category_number
     for category in list_of_ids:
         if category['categoryID'] == now_id:
-            str_out += category['name']+" > "
+            str_out = category['name']
             parent_id = category['parentID']
             break
     while parent_id != 1:
         for category in list_of_ids:
             if category['categoryID'] == parent_id:
-                str_out += category['name']+" > "
+                str_out = category['name']+" > "+str_out
                 parent_id = category['parentID']
-    str_out = str_out[:-2]
-    list_final = str_out.split(" > ")
-    list_final.reverse()
-    print(" > ".join(list_final))
+    # str_out = str_out[:-2]
+    # list_final = str_out.split(" > ")
+    # list_final.reverse()
+    # print(" > ".join(list_final))
     return str_out
 
 
@@ -62,6 +62,5 @@ def category_name_to_code(code):
         if category['name'] == code:
             name = category['categoryID']
             return name
-
 
 find_way(category_name_to_code("Активное сетевое оборудование"))

@@ -128,8 +128,10 @@ def category_to_list(category_number, SID):
         # TODO statistics()
 
         list_of_info.append(props)
+        max = 500
         c += 1
-        if c == 20:
+        print(str(round(c/max*100,2))+"%")
+        if c == max:
             return list_of_info
             break
 

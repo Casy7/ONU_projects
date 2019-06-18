@@ -20,6 +20,7 @@ class Truck(object):
             return 0.0  # Not yet sold
         return 10000 - (.10 * self.miles)
 
+
 class Vehicle(object):
     base_sale_price = 0
 
@@ -32,7 +33,6 @@ class Vehicle(object):
         self.year = year
         self.sold_on = sold_on
 
-
     def sale_price(self):
         """Return the sale price for this vehicle as a float amount."""
         if self.sold_on is not None:
@@ -44,6 +44,9 @@ class Vehicle(object):
         if self.sold_on is None:
             return 0.0  # Not yet sold
         return self.base_sale_price - (.10 * self.miles)
-some_truck = Truck(6,6000,"Honda","mini",2000,0)
+
+
+some_truck = Truck(6, 6000, "Honda", "mini", 2000, 0)
 with open("d.txt", "w") as file:
-    file.write("Model: "+some_truck.model+" \n"+str(some_truck.sold_on)+" \nWheels: "+str(some_truck.wheels))
+    file.write("Model: "+some_truck.model+" \n" +
+               str(some_truck.sold_on)+" \nWheels: "+str(some_truck.wheels))

@@ -2,7 +2,7 @@ import requests
 import json
 import xlwt
 
-import categories
+# import categories
 
 
 URL = "https://api.brain.com.ua/"   # Константа домена сайта
@@ -44,7 +44,7 @@ def get_props(ID, SID):
     return props["result"]
 
 
-def good_view(props):
+def good_view(props, SID):
     result_list = []
     rules = [
         "productID",
@@ -63,7 +63,7 @@ def good_view(props):
             result_list.append("")
     result_list[4] = set_price(float(result_list[4]))
     # Путь категории
-    category_way = categories.find_way(int(props["categoryID"]))
+    category_way = find_way(int(props["categoryID"]), SID=SID)
     result_list.append(category_way)
     # Производитель
     manufacturer = ""
@@ -76,16 +76,16 @@ def good_view(props):
         pass
     result_list.append(manufacturer)
     # Фотографии (5)
-    result_list.extend(get_all_images(props['productID'],get_key()))
+    result_list.extend(get_all_images(props['productID'], get_key()))
     # Свойства
     # TODO
     properties = props['options']
 
     for propty in properties:
-        if propty['name']!="Гарантия, мес":
+        if propty['name'] != "Гарантия, мес":
             result_list.append(propty['name'])
             result_list.append(propty['value'])
- 
+
     print("done")
     return result_list
 
@@ -112,7 +112,7 @@ def get_IDs_of_category(category_number, SID):
 def category_to_json(category_number, SID):
     dict_of_info = {}
     for product_ID in get_IDs_of_category(category_number, SID):
-        props = good_view(get_props(product_ID, SID))
+        props = good_view(get_props(product_ID, SID), SID)
         # TODO statistics()
         name = "rootID"
         dict_of_info[name] = props
@@ -123,30 +123,30 @@ def category_to_list(category_number, SID):
     list_of_info = []
     c = 0
     for product_ID in get_IDs_of_category(category_number, SID):
-        props = good_view(get_props(product_ID, SID))
+        props = good_view(get_props(product_ID, SID), SID)
         # TODO statistics()
 
         list_of_info.append(props)
-        max = 500
+        max = 20
         c += 1
-        print(str(round(c/max*100,2))+"%")
+        print(str(round(c/max*100, 2))+"%")
         if c == max:
             return list_of_info
             break
 
 
-def set_price(price, recommended_price = None, exchange_rates = 27):
+def set_price(price, recommended_price=None, exchange_rates=27):
     poss_price_1 = price*exchange_rates*1.15
     if recommended_price is not None:
         to_return = max(poss_price_1, recommended_price)
     else:
         to_return = poss_price_1
-    return round(to_return,2)
+    return round(to_return, 2)
 
 
 def get_all_images(ID, SID):
     req = requests.get(URL + "product_pictures/" +
-                                   str(ID)+"/"+SID).content
+                       str(ID)+"/"+SID).content
     list_of_images = json.loads(req)["result"]
     res_list = []
     for number_of_image in range(5):
@@ -156,6 +156,70 @@ def get_all_images(ID, SID):
             res_list.append('')
     return res_list
     # TODO
+
+
+def get_ways(SID=None, file_name="js_categories.json"):
+    req = requests.get(
+        "http://api.brain.com.ua/categories/"+SID)
+    json_all = json.loads(req.content)["result"]
+    with open(file_name, "w") as write_file:
+        json.dump(json_all, write_file)
+
+    return json_all
+
+
+def find_way(category_number=1484, list_of_ids="", SID=get_key()):
+    if list_of_ids == "":
+        try:
+            with open('js_categories.json', "r") as read_file:
+                list_of_ids = json.load(read_file)
+        except:
+            list_of_ids = get_ways()
+    str_out = ""
+    now_id = category_number
+    for category in list_of_ids:
+        if category['categoryID'] == now_id:
+            str_out = category['name']
+            parent_id = category['parentID']
+            break
+    while parent_id != 1:
+        for category in list_of_ids:
+            if category['categoryID'] == parent_id:
+                str_out = category['name']+" > "+str_out
+                parent_id = category['parentID']
+    # str_out = str_out[:-2]
+    # list_final = str_out.split(" > ")
+    # list_final.reverse()
+    # print(" > ".join(list_final))
+    return str_out
+
+
+def category_code_to_name(code):
+    try:
+        with open('js_categories.json', "r") as read_file:
+            list_of_ids = json.load(read_file)
+    except:
+        list_of_ids = get_ways()
+    for category in list_of_ids:
+        if category['categoryID'] == code:
+            name = category['name']
+            return name
+
+
+def category_name_to_code(code):
+    try:
+        with open('js_categories.json', "r") as read_file:
+            list_of_ids = json.load(read_file)
+    except:
+        list_of_ids = get_ways()
+    for category in list_of_ids:
+        if category['name'] == code:
+            name = category['categoryID']
+            return name
+
+
+
+
 # def get_product(ID, SID):
 
 

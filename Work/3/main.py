@@ -11,14 +11,11 @@ SID = functions.get_key()
 # print(functions.get_props(525078, SID))
 # functions.good_view(525078)
 print(functions.get_categories(SID))
-functions.good_view(functions.get_props(47, SID))
+functions.good_view(functions.get_props(47, SID), SID)
 
 example_ssd = functions.category_to_list(1484, SID)
 
-
-with open("Z:/Repositories/testrepo1/Work/1/xml_example.csv",
-      "w",
-      encoding="UTF8") as write_file:
-      writer = csv.writer(write_file, delimiter=',')
-      for line in example_ssd:
-            writer.writerow(line)
+with open("import.csv", "w", encoding="UTF8") as write_file:
+    writer = csv.writer(write_file, delimiter=',')
+    for line in example_ssd:
+        writer.writerow(line)

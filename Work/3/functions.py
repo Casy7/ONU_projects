@@ -119,7 +119,6 @@ def category_to_json(category_number, SID):
     return dict_of_info
 
 
-
 def category_to_list(category_number, SID):
     list_of_info = []
     c = 0

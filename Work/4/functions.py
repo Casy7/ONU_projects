@@ -122,13 +122,12 @@ def category_to_json(category_number, SID):
 def category_to_list(category_number, SID):
     list_of_info = []
     c = 0
-    max = 5
-    ids = get_IDs_of_category(category_number, SID)
-    for product_ID in ids:
+    for product_ID in get_IDs_of_category(category_number, SID):
         props = good_view(get_props(product_ID, SID), SID)
         # TODO statistics()
-        max = len(ids)
+
         list_of_info.append(props)
+        max = 20
         c += 1
         print(str(round(c/max*100, 2))+"%")
         if c == max:

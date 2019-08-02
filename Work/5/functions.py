@@ -225,22 +225,15 @@ def numb_of_category(name, list_of_ids="", SID=get_key()):
     return str_out
 
 
-def check_category_existing(name, list_of_ids="", SID=get_key()):
-    if list_of_ids == "":
-        try:
-            with open('js_categories.json', "r") as read_file:
-                list_of_ids = json.load(read_file)
-        except:
-            list_of_ids = get_ways(SID)
-    str_out = ""
-    for category in list_of_ids:
-        if category['name'] == name:
-            str_out = category['categoryID']
-            break
-    return str_out
+def check_category_existing(cat_name):
+    if cat_name in cats_by_name.keys():
+        return True
+    else:
+        return False
 
 
 def read_pricelist():
+    """Возвращает список таплов (имя, категория) всех товаров прайслиста"""
     with open('PriceList_short.json', "r",encoding="UTF8") as read_file:
         PRICELIST = tuple(json.load(read_file).values())
     tuplist_IDs_cats = []
@@ -250,7 +243,22 @@ def read_pricelist():
     return tuplist_IDs_cats
 
 
-# 
+def import_category(category_name):
+    """Принимает имя категории и возвращает список ID-шников "живых" товаров категории"""
+    cat_code = category_name_to_code(category_name)
+    tuplist = read_pricelist()
+
+    current_ids = []
+    for index in range(len(tuplist)):
+        if tuplist[index][1] == cat_code:
+            while tuplist[index][1] == cat_code:
+                current_ids.append(tuplist[index][0])
+                index+=1
+            break
+    return current_ids
+    # import_category("Навигаторы GPS")
+
+
 # def get_product(ID, SID):
 
 

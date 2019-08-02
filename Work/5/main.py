@@ -21,16 +21,16 @@ def clicked():
     lbl.configure(text=category+"? Тяжёлый случай...")
     btn.configure(text="Ну, типа, всё?")
     counter_btn_clicked[0] +=1
-    try:
-        example_ssd = functions.category_to_list(
-            functions.numb_of_category(category), SID=SID)
+
+    if functions.check_category_existing(category):
+        example_ssd = functions.ids_to_list(
+            functions.import_category(category), SID=SID)
         with open("import_2.csv", "w", encoding="UTF8") as write_file:
             writer = csv.writer(write_file, delimiter=',')
             for line in example_ssd:
                 writer.writerow(line)      
-    except:
+    else:
         lbl_after.configure(text = "Такой категории нет.")
-        pass
 
 
 window = Tk()

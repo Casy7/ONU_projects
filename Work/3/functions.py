@@ -169,6 +169,21 @@ def get_ways(SID=None, file_name="js_categories.json"):
     return json_all
 
 
+def numb_of_category(category="", list_of_ids="", SID=get_key()):
+    if list_of_ids == "":
+        try:
+            with open('js_categories.json', "r") as read_file:
+                list_of_ids = json.load(read_file)
+        except:
+            list_of_ids = get_ways(SID)
+    str_out = ""
+    for category in list_of_ids:
+        if category['name'] == category:
+            str_out = category['categoryID']
+            break
+    return str_out
+
+
 def find_way(category_number=1484, list_of_ids="", SID=get_key()):
     if list_of_ids == "":
         try:

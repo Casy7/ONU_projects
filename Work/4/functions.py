@@ -122,17 +122,19 @@ def category_to_json(category_number, SID):
 def category_to_list(category_number, SID):
     list_of_info = []
     c = 0
-    for product_ID in get_IDs_of_category(category_number, SID):
+    ids = get_IDs_of_category(category_number, SID)
+    lenth = len(ids)
+    for product_ID in ids:
         props = good_view(get_props(product_ID, SID), SID)
         # TODO statistics()
-
+        max_len = max(20000, lenth)
         list_of_info.append(props)
-        max = 20
         c += 1
-        print(str(round(c/max*100, 2))+"%")
-        if c == max:
+        print(str(round(c/max_len*100, 2))+"%")
+        if c == max_len:
             return list_of_info
             break
+    return list_of_info
 
 
 def set_price(price, recommended_price=None, exchange_rates=27):
@@ -218,8 +220,37 @@ def category_name_to_code(code):
             return name
 
 
+def numb_of_category(name, list_of_ids="", SID=get_key()):
+    if list_of_ids == "":
+        try:
+            with open('js_categories.json', "r") as read_file:
+                list_of_ids = json.load(read_file)
+        except:
+            list_of_ids = get_ways(SID)
+    str_out = ""
+    for category in list_of_ids:
+        if category['name'] == name:
+            str_out = category['categoryID']
+            break
+    return str_out
+
+def check_category_existing(name, list_of_ids="", SID=get_key()):
+    if list_of_ids == "":
+        try:
+            with open('js_categories.json', "r") as read_file:
+                list_of_ids = json.load(read_file)
+        except:
+            list_of_ids = get_ways(SID)
+    str_out = ""
+    for category in list_of_ids:
+        if category['name'] == name:
+            str_out = category['categoryID']
+            break
+    return str_out
 
 
+def read_large_pricelist():
+    pass
 # def get_product(ID, SID):
 
 

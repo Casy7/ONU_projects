@@ -3,7 +3,6 @@ import json
 import xlwt
 
 
-
 URL = "https://api.brain.com.ua/"   # Константа домена сайта
 
 

@@ -2,7 +2,6 @@ import requests
 import json
 import xlwt
 
-# import categories
 
 
 URL = "https://api.brain.com.ua/"   # Константа домена сайта

@@ -260,11 +260,10 @@ def read_pricelist():
         PRICELIST = tuple(json.load(read_file).values())
     list_of_IDs = []
     for product in PRICELIST:
-        list_of_IDs.append(product['ProductID'])
+        list_of_IDs.append((product['ProductID'],product['CategoryID']))
     return list_of_IDs
-            
+    # print(read_pricelist())
 
-print(len(read_pricelist()))
 
 # def get_product(ID, SID):
 

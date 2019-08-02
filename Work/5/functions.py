@@ -4,7 +4,10 @@ import xlwt
 
 
 URL = "https://api.brain.com.ua/"   # Константа домена сайта
-
+with open('table_of_categories.json', "r") as read_file:
+    cat_list = json.load(read_file)
+with open('cats_by_name.json', "r") as read_file:
+    cats_by_name = json.load(read_file)
 
 def get_key():
     """Функция возвращает ключ сессии"""
@@ -200,27 +203,11 @@ def find_way(category_number=1484, list_of_ids="", SID=get_key()):
 
 
 def category_code_to_name(code):
-    try:
-        with open('js_categories.json', "r") as read_file:
-            list_of_ids = json.load(read_file)
-    except:
-        list_of_ids = get_ways()
-    for category in list_of_ids:
-        if category['categoryID'] == code:
-            name = category['name']
-            return name
+    return cat_list[str(code)][0]
 
 
-def category_name_to_code(code):
-    try:
-        with open('js_categories.json', "r") as read_file:
-            list_of_ids = json.load(read_file)
-    except:
-        list_of_ids = get_ways()
-    for category in list_of_ids:
-        if category['name'] == code:
-            name = category['categoryID']
-            return name
+def category_name_to_code(name):
+    return cats_by_name[name][0]
 
 
 def numb_of_category(name, list_of_ids="", SID=get_key()):
@@ -256,13 +243,14 @@ def check_category_existing(name, list_of_ids="", SID=get_key()):
 def read_pricelist():
     with open('PriceList_short.json', "r",encoding="UTF8") as read_file:
         PRICELIST = tuple(json.load(read_file).values())
-    list_of_IDs = []
+    tuplist_IDs_cats = []
     for product in PRICELIST:
-        list_of_IDs.append((product['ProductID'],product['CategoryID']))
-    return list_of_IDs
-    # print(read_pricelist())
+        tuplist_IDs_cats.append((product['ProductID'],product['CategoryID']))
+    tuplist_IDs_cats.sort(key = lambda x: x[1])
+    return tuplist_IDs_cats
 
 
+# 
 # def get_product(ID, SID):
 
 

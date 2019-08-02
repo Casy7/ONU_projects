@@ -5,14 +5,19 @@ def import_all_pricelist():
     pass
 
 def import_category(category):
-    
-
-    example_ssd = functions.category_to_list(
-        functions.numb_of_category(category), SID=SID)
-    with open("import_2.csv", "w", encoding="UTF8") as write_file:
+    cat_code = functions.category_name_to_code(category)
+    tuplist = functions.read_pricelist()
+    with open("Exmport_File.csv", "w", encoding="UTF8") as write_file:
         writer = csv.writer(write_file, delimiter=',')
-        for line in example_ssd:
-            writer.writerow(line)
+    current_ids = []
+    for index in range(len(tuplist)):
+        index = 0
+        while tuplist[index][1] == cat_code:
+            current_ids.append(tuplist[index][0])
+            index+=1
+        break
+    print(current_ids)
+
 
     
 

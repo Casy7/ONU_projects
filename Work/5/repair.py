@@ -67,15 +67,19 @@ def REPAIR_categories():
                 list_of_cats = json.load(read_file)
 
             final_dict = {}
+            dict_by_name = {}
 
             for category in list_of_cats:
                 name = category['name']
                 id = category["categoryID"]
                 way = find_way(id)
                 final_dict[int(id)] = (name, way)
+                dict_by_name[name] = [id, way]
 
             with open('table_of_categories.json', "w", encoding="UTF8") as file:
                 json.dump(final_dict, file)
+            with open('cats_by_name.json', "w", encoding="UTF8") as file:
+                json.dump(dict_by_name, file)
         except:
             get_ways()
             repair_table()

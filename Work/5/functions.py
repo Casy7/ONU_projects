@@ -255,13 +255,17 @@ def check_category_existing(name, list_of_ids="", SID=get_key()):
     return str_out
 
 
-def read_large_pricelist():
-    with open('PriceList_large.json', "r",encoding="UTF8") as read_file:
-        PRICELIST = json.load(read_file).values()
-        for index in PRICELIST:
-            pass 
+def read_pricelist():
+    with open('PriceList_short.json', "r",encoding="UTF8") as read_file:
+        PRICELIST = tuple(json.load(read_file).values())
+    list_of_IDs = []
+    for product in PRICELIST:
+        list_of_IDs.append(product['ProductID'])
+    return list_of_IDs
+            
 
-read_large_pricelist()
+print(len(read_pricelist()))
+
 # def get_product(ID, SID):
 
 

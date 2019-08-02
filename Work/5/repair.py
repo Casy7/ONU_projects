@@ -2,6 +2,7 @@ import requests
 import json
 import xlwt
 
+
 def get_key():
     """Функция возвращает ключ сессии"""
 
@@ -16,8 +17,7 @@ def get_key():
 def UPDATE_pricelist():
     req = requests.get(
         "http://api.brain.com.ua/pricelists/57/json/"+get_key()+"?full=2")
-    link = json.loads(req.content)["url"]
-    url = link
+    url = json.loads(req.content)["url"]
     print("Подгрузка прайслиста...")
     r = requests.get(url, allow_redirects=True)
     open('PriceList_short.json', 'wb').write(r.content)
@@ -72,7 +72,7 @@ def REPAIR_categories():
                 name = category['name']
                 id = category["categoryID"]
                 way = find_way(id)
-                final_dict[id] = (name, way)
+                final_dict[int(id)] = (name, way)
 
             with open('table_of_categories.json', "w", encoding="UTF8") as file:
                 json.dump(final_dict, file)
@@ -81,12 +81,26 @@ def REPAIR_categories():
             repair_table()
     repair_table()
 
+
+def DOWNLOAD_files():
+    files = ('main.py','functions.py')
+    for file in files:
+        req = requests.get(
+            "https://raw.githubusercontent.com/Casy7/testrepo1/master/Work/5/"+file)             
+        text = req.text
+        print("Загрузка "+file+"...")
+        with open(file, "w", encoding="UTF8") as file:
+           file.write(text)
+
+
+
 hello = "Вас приветствует установщик сей чудо-программы. Итак, вы уверены, что вам абсолютно не нужна папка, в которой находится этот файл, и вы, несмотря на то, что ЭТО писал я, готовы рискнуть и установить импортёр? (Y/N)  "
 answer = input(hello).lower()
 if answer == "y":
     print("Ну, если что, я не виноват.")
     REPAIR_categories()
     UPDATE_pricelist()
+    DOWNLOAD_files()
     input("Ну, файлы загружены. А вот будет ли ЭТО работать, одним богам ведомо (да и то не факт). Для открытия программы запустите \"main.py\"")
 else:
     input("Эээ...(если что, вы выбрали \"нет\")")

@@ -1,0 +1,266 @@
+WidGet file, version 1.2, created:  Sat Aug 03 10:05:39 RTZ 2 (????) 2019
+Widget button#1
+	geometry column 3
+	other comments {}
+	other error {}
+	other help {}
+	other item_name button#1
+	other level {}
+	other master {}
+	other pathname button#1
+	configure relief flat
+	geometry row 5
+	other tabbing {}
+	other tags {}
+	configure text Check
+	other type button
+Widget button#2
+	configure anchor e
+	geometry column 3
+	other comments {}
+	other error {}
+	configure height 1
+	other help {}
+	other item_name button#2
+	other level {}
+	other master {}
+	other pathname button#2
+	configure relief flat
+	geometry row 4
+	other tabbing {}
+	other tags {}
+	configure text Add
+	other type button
+Widget button#4
+	geometry column 3
+	other comments {}
+	other error {}
+	other help {}
+	other item_name button#4
+	other level {}
+	other master {}
+	other pathname button#4
+	configure relief flat
+	geometry row 6
+	other tabbing {}
+	other tags {}
+	configure text Del
+	other type button
+Widget canvas#1
+	geometry column 3
+	other comments {}
+	other error {- Canvas configuration -}
+	configure height 0
+	other help {}
+	other item_name canvas#1
+	other level {}
+	other master {}
+	other pathname canvas#1
+	geometry row 1
+	geometry sticky nesw
+	other tabbing {}
+	other tags {}
+	other type canvas
+	configure width 0
+Widget entry#2
+	geometry column 2
+	other comments {}
+	other error {- Entry configuration -}
+	other help {}
+	other item_name entry#2
+	other level {}
+	other master {}
+	other pathname entry#2
+	geometry row 9
+	other tabbing {}
+	other tags {}
+	configure textvariable entry
+	other type entry
+Widget entry#4
+	configure borderwidth 1
+	geometry column 1
+	geometry columnspan 2
+	other comments {}
+	other error {}
+	other help {}
+	configure insertwidth 68
+	other item_name entry#4
+	geometry ipadx 52
+	geometry ipady 24
+	other level {}
+	other master {}
+	other pathname entry#4
+	geometry row 4
+	geometry rowspan 3
+	other tabbing {}
+	other tags {}
+	configure textvariable entry
+	other type entry
+Widget f
+	other Colors {black white bisque grey red green blue magenta yellow SystemButtonFace}
+	configure background #e9e9e9
+	other comments {}
+	other generic_options {button {
+		} canvas {
+		} checkbutton {
+		} entry {
+		} frame {
+		} label {
+		} labelframe {
+		} listbox {
+		} menu {
+		} menubutton {
+		} message {
+		} panedwindow {
+		} radiobutton {activebackground SystemButtonFace activeforeground SystemWindowText anchor center background SystemButtonFace bitmap {} borderwidth 2 command {} comments {} compound none cursor {} disabledforeground SystemDisabledText error {- radiobutton configuration -} font {MS Sans Serif,8} foreground SystemWindowText height 0 help {} highlightbackground SystemButtonFace highlightcolor SystemWindowFrame highlightthickness 1 image {} indicatoron 1 item_name sample_radiobutton justify center level {} master {} offrelief raised overrelief {} padx 1 pady 1 pathname sample_radiobutton relief flat selectcolor SystemWindow selectimage {} state normal tabbing {} tags {} takefocus {} text radiobutton textvariable {} type radiobutton underline -1 value {} variable example_radiobutton width 0 wraplength 0
+		} scale {
+		} scrollbar {
+		} spinbox {
+		} text {
+		}
+	}
+	other help {}
+	other item_name f
+	other level {}
+	other master {}
+	other min_column {45 191 9 148}
+	other min_row {2 2 11 2 2 14 2 30 30 30}
+	other pad_column {0 0 0 0}
+	other pad_row {0 0 0 0 0 0 0 0 0 0}
+	other panel {}
+	other pathname f
+	other resize_column {0 0 0 0}
+	other resize_row {0 0 0 0 0 0 0 0 0 0}
+	other tabbing {}
+	other tags {}
+	other type frame
+	other weight_column {0 0 0 0}
+	other weight_row {0 0 0 0 0 0 0 0 0 0}
+Widget listbox#1
+	geometry column 4
+	other comments {}
+	other error {- Listbox configuration -}
+	configure height 0
+	other help {}
+	other item_name listbox#1
+	other level {}
+	other master {}
+	other pathname listbox#1
+	geometry row 4
+	geometry sticky nesw
+	other tabbing {}
+	other tags {}
+	other type listbox
+	configure width 0
+Widget radiobutton#1
+	geometry column 1
+	geometry columnspan 2
+	other comments {}
+	other error {}
+	other help {}
+	other item_name radiobutton#1
+	other level {}
+	other master {}
+	other pathname radiobutton#1
+	geometry row 1
+	other tabbing {}
+	other tags {}
+	configure text {White List}
+	other type radiobutton
+	configure variable example_radiobutton
+Widget radiobutton#2
+	configure anchor w
+	geometry column 1
+	geometry columnspan 2
+	other comments {}
+	other error {}
+	other focus .widget.form.can.f.radiobutton#2,activebackground,entry
+	other help {}
+	other item_name radiobutton#2
+	other level {}
+	other master {}
+	other pathname radiobutton#2
+	geometry row 2
+	other tabbing {}
+	other tags {}
+	configure text {Black List}
+	other type radiobutton
+	configure variable example_radiobutton
+Widget radiobutton#4
+	geometry column 1
+	geometry columnspan 4
+	other comments {}
+	other error {}
+	other help {}
+	other item_name radiobutton#4
+	other level {}
+	other master {}
+	other pathname radiobutton#4
+	geometry row 3
+	other tabbing {}
+	other tags {}
+	configure text Categories
+	other type radiobutton
+	configure variable example_radiobutton
+Widget radiobutton#5
+	geometry column 1
+	geometry columnspan 4
+	other comments {}
+	other help {}
+	other item_name radiobutton#5
+	other level {}
+	other master {}
+	other pathname radiobutton#5
+	geometry row 7
+	other tabbing {}
+	other tags {}
+	configure text Products
+	other type radiobutton
+	configure variable example_radiobutton
+Widget radiobutton#6
+	geometry column 1
+	other comments {}
+	other error {- Radiobutton configuration -}
+	other help {}
+	other item_name radiobutton#6
+	other level {}
+	other master {}
+	other pathname radiobutton#6
+	geometry row 8
+	other tabbing {}
+	other tags {}
+	configure text ID
+	other type radiobutton
+	configure variable example_radiobutton
+Widget radiobutton#7
+	geometry column 2
+	other comments {}
+	other error {- Radiobutton configuration -}
+	other help {}
+	other item_name radiobutton#7
+	other level {}
+	other master {}
+	other pathname radiobutton#7
+	geometry row 8
+	other tabbing {}
+	other tags {}
+	configure text Code
+	other type radiobutton
+	configure variable example_radiobutton
+Widget text#3
+	geometry column 4
+	other comments {}
+	configure height 1
+	other help {}
+	other item_name text#3
+	other level {}
+	other master {}
+	other pathname text#3
+	geometry row 5
+	geometry rowspan 2
+	geometry sticky nesw
+	other tabbing {}
+	other tags {}
+	other type text
+	configure width 1
+

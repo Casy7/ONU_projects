@@ -128,7 +128,7 @@ def ids_to_list(list_of_IDs, SID):
     for product_ID in ids:
         props = good_view(get_props(product_ID, SID), SID)
         # TODO statistics()
-        max_len = max(20000, length)
+        max_len = min(20000, length)
         list_of_info.append(props)
         c += 1
         print(str(round(c/max_len*100, 2))+"%")

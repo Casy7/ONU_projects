@@ -64,7 +64,7 @@ def good_view(props, SID):
             result_list.append("")
     result_list[4] = set_price(float(result_list[4]))
     # Путь категории
-    category_way = find_way(int(props["categoryID"]), SID=SID)
+    category_way = find_way(int(props["categoryID"]))
     result_list.append(category_way)
     # Производитель
     manufacturer = ""
@@ -86,8 +86,6 @@ def good_view(props, SID):
         if propty['name'] != "Гарантия, мес":
             result_list.append(propty['name'])
             result_list.append(propty['value'])
-
-    print("done")
     return result_list
 
 
@@ -176,30 +174,9 @@ def get_ways(SID=None, file_name="js_categories.json"):
     return json_all
 
 
-def find_way(category_number=1484, list_of_ids="", SID=get_key()):
-    if list_of_ids == "":
-        try:
-            with open('js_categories.json', "r") as read_file:
-                list_of_ids = json.load(read_file)
-        except:
-            list_of_ids = get_ways(SID)
-    str_out = ""
-    now_id = category_number
-    for category in list_of_ids:
-        if category['categoryID'] == now_id:
-            str_out = category['name']
-            parent_id = category['parentID']
-            break
-    while parent_id != 1:
-        for category in list_of_ids:
-            if category['categoryID'] == parent_id:
-                str_out = category['name']+" > "+str_out
-                parent_id = category['parentID']
-    # str_out = str_out[:-2]
-    # list_final = str_out.split(" > ")
-    # list_final.reverse()
-    # print(" > ".join(list_final))
-    return str_out
+def find_way(category_number):
+    """Возвращает путь к категории"""
+    return cat_list[str(category_number)][1]
 
 
 def category_code_to_name(code):

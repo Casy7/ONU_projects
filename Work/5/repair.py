@@ -87,15 +87,29 @@ def REPAIR_categories():
 
 
 def DOWNLOAD_files():
-    files = ('main.py','functions.py')
+    files = ('main.py', 'functions.py')
     for file in files:
         req = requests.get(
-            "https://raw.githubusercontent.com/Casy7/testrepo1/master/Work/5/"+file)             
+            "https://raw.githubusercontent.com/Casy7/testrepo1/master/Work/5/"+file)
         text = req.text
         print("Загрузка "+file+"...")
         with open(file, "w", encoding="UTF8") as file:
-           file.write(text)
+            file.write(text)
 
+
+def SET_default_settings():
+    # TODO Начальные настройки будут другими
+    final_json = {}
+    default_slot = {"mode": "black_list", "categories": ""}
+    for index in range(1, 6):
+        final_json[str(index)] = default_slot
+
+    with open('cats_by_name.json', "r") as read_file:
+        list_of_cats = json.load(read_file).keys()
+    final_json["categories"] = list(list_of_cats)
+
+    with open('settings.json', "w") as file:
+        json.dump(final_json, file)
 
 
 hello = "Вас приветствует установщик сей чудо-программы. Итак, вы уверены, что вам абсолютно не нужна папка, в которой находится этот файл, и вы, несмотря на то, что ЭТО писал я, готовы рискнуть и установить импортёр? (Y/N)  "
@@ -105,6 +119,7 @@ if answer == "y":
     REPAIR_categories()
     UPDATE_pricelist()
     DOWNLOAD_files()
+    SET_default_settings()
     input("Ну, файлы загружены. А вот будет ли ЭТО работать, одним богам ведомо (да и то не факт). Для открытия программы запустите \"main.py\"")
 else:
     input("Эээ...(если что, вы выбрали \"нет\")")

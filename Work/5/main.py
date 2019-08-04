@@ -7,7 +7,7 @@ import pyperclip
 from tkinter import *
 from tkinter import ttk
 import sys
-
+# h
 SID = functions.get_key()
 counter_btn_clicked = [0]
 settings = {"mode": "black_list", "categories": ""}

@@ -12,8 +12,9 @@ SID = functions.get_key()
 counter_btn_clicked = [0]
 settings = {"mode": "black_list", "categories": ""}
 
+
 def format_cats():
-    condition.configure(text = "---")
+    condition.configure(text="---")
     categories = txt.get(1.0, 999.74567)
     categories = "\n".join(categories.splitlines())
     categories = categories.split('\n')
@@ -33,12 +34,12 @@ def format_cats():
         categories[-1] = categories[-1][:-1]
     return categories
 
+
 def check_cats():
     # TODO Исправить: пустые строки между категориями
     # ведут к ошибке
     with open("settings.json", "r", encoding="UTF8") as file:
         all_cats = json.load(file)["categories"]
-
 
     cats = format_cats()
     index = 1
@@ -46,7 +47,7 @@ def check_cats():
     for cat in cats:
         if cat not in all_cats:
             mistakes_pos.append(index)
-            condition.configure(text = "Есть ошибки в именах категорий")
+            condition.configure(text="Есть ошибки в именах категорий")
         index += 1
     cats_text = cats[0]
     for index in range(1, len(cats)):
@@ -57,10 +58,11 @@ def check_cats():
     for mistake in mistakes_pos:
         txt.tag_add(str(mistake), str(mistake)+".0", str(mistake)+".999")
         txt.tag_config(str(mistake), background="yellow")
-    if mistakes_pos==[]:
+    if mistakes_pos == []:
         return True
     else:
         return False
+
 
 def get_text_clipboard():
     category = pyperclip.paste()+"\n"
@@ -70,14 +72,14 @@ def get_text_clipboard():
 
 def del_text_from_txt():
     txt.delete(0, END)
-
+    
 
 def start_import():
     # TODO Разобраться, почему импорт одной категории не идёт
     # TODO Сделать систему поиска дочерних категорий
     # (только листов веток)
     categories = txt.get(1.0, 999.74567)
-    lbl.configure(text="Мдяя...")
+    # lbl.configure(text="Мдяя...")
     # counter_btn_clicked[0] += 1
     categories = categories.split('\n')
     for index in range(len(categories)):
@@ -98,8 +100,33 @@ def start_import():
             writer = csv.writer(write_file, delimiter=',')
             for line in export_list:
                 writer.writerow(line)
-            
 
+
+def id_import():
+    ids = id_txt.get(1.0, 999.74567)
+    ids = "\n".join(ids.splitlines())
+    ids = ids.split('\n')
+    while ids[-1] == '':
+        ids = ids[:-1]
+    for index in range(len(ids)):
+        ids[index].strip()
+        if ids[index] == '':
+            ids.pop(index)
+        else:
+            while ids[index][0] == ' ':
+                ids[index] = ids[index][1:]
+            while ids[index][-1] == ' ':
+                ids[index] = ids[index][:-1]
+    ids[-1].replace('\n', '')
+    while ids[-1][-1] == '\n':
+        ids[-1] = ids[-1][:-1]
+    export_list = []
+    for id in ids:
+        export_list.append(functions.good_view(functions.get_props(id,SID),SID))
+    with open("import_2.csv", "w", encoding="UTF8") as write_file:
+        writer = csv.writer(write_file, delimiter=',')
+        for line in export_list:
+            writer.writerow(line)
 
 
 window = Tk()
@@ -109,19 +136,35 @@ lines = Canvas(window)
 tabs = ttk.Notebook(window)
 tab1 = ttk.Frame(tabs)
 tab2 = ttk.Frame(tabs)
-tabs.add(tab1, text='Основной лист')
-tabs.add(tab2, text='Доп. настройки')
+tabs.add(tab1, text='Категории')
+tabs.add(tab2, text='По ID')
 
 ######### Categories frame #############
 
 cat_frame = Frame(tab1)
-scrollbar = Scrollbar(cat_frame)
-scrollbar.pack(side=RIGHT, fill=Y)
+scrollbar_cat = Scrollbar(cat_frame)
+scrollbar_cat.pack(side=RIGHT, fill=Y)
 
-txt = Text(cat_frame, width=35, yscrollcommand=scrollbar.set)
-scrollbar.config(command=txt.yview)
+txt = Text(cat_frame, width=35, yscrollcommand=scrollbar_cat.set)
+scrollbar_cat.config(command=txt.yview)
 txt.pack()
 cat_frame.place(x=5, y=50, width=230, height=150)
+
+#########      IDs frame     ###########
+lb = Listbox(tab2)
+lb.insert(1, "ID")
+lb.insert(2, "Product Code")
+id_frame = Frame(tab2)
+scrollbar_id = Scrollbar(id_frame)
+scrollbar_id.pack(side=RIGHT, fill=Y)
+imp_by_id_btn = Button(tab2, text="Импорт", command=id_import, relief = GROOVE)
+
+id_txt = Text(id_frame, width=35, yscrollcommand=scrollbar_id.set)
+scrollbar_id.config(command=id_txt.yview)
+id_txt.pack()
+id_frame.place(x=5, y=50, width=170, height=200)
+lb.place(x=5, y=5, width=155, height = 36)
+imp_by_id_btn.place(x=168, y=5, width=155, height = 37)
 
 #########  Mode of import  #############
 

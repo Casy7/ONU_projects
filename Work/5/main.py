@@ -1,12 +1,11 @@
 # TODO Create function "get_product" wich gets properties by ID
-import sys
 import csv
 import json
 import functions
 import pyperclip
 from tkinter import *
 from tkinter import ttk
-import sys
+
 # h
 SID = functions.get_key()
 counter_btn_clicked = [0]

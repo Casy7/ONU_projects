@@ -121,8 +121,13 @@ def id_import():
     while ids[-1][-1] == '\n':
         ids[-1] = ids[-1][:-1]
     export_list = []
+    length=len(ids)
+    progress=0
     for id in ids:
         export_list.append(functions.good_view(functions.get_props(id,SID),SID))
+        progress+=1
+        condition_id.configure(text=str(round(progress/length*100,2))+"%")
+        
     with open("import_2.csv", "w", encoding="UTF8") as write_file:
         writer = csv.writer(write_file, delimiter=',')
         for line in export_list:
@@ -158,13 +163,16 @@ id_frame = Frame(tab2)
 scrollbar_id = Scrollbar(id_frame)
 scrollbar_id.pack(side=RIGHT, fill=Y)
 imp_by_id_btn = Button(tab2, text="Импорт", command=id_import, relief = GROOVE)
-
+lbl_id_cond = Label(tab2, text = "СОСТОЯНИЕ:")
+condition_id = Label(tab2, text = "---")
 id_txt = Text(id_frame, width=35, yscrollcommand=scrollbar_id.set)
 scrollbar_id.config(command=id_txt.yview)
 id_txt.pack()
 id_frame.place(x=5, y=50, width=170, height=200)
 lb.place(x=5, y=5, width=155, height = 36)
 imp_by_id_btn.place(x=168, y=5, width=155, height = 37)
+lbl_id_cond.place(x = 175, y = 45)
+condition_id.place(x = 260, y = 45)
 
 #########  Mode of import  #############
 

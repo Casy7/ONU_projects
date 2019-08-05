@@ -4,7 +4,10 @@ import xlwt
 
 
 URL = "https://api.brain.com.ua/"   # Константа домена сайта
-
+with open('table_of_categories.json', "r") as read_file:
+    cat_list = json.load(read_file)
+with open('cats_by_name.json', "r") as read_file:
+    cats_by_name = json.load(read_file)
 
 def get_key():
     """Функция возвращает ключ сессии"""
@@ -61,7 +64,7 @@ def good_view(props, SID):
             result_list.append("")
     result_list[4] = set_price(float(result_list[4]))
     # Путь категории
-    category_way = find_way(int(props["categoryID"]), SID=SID)
+    category_way = find_way(int(props["categoryID"]))
     result_list.append(category_way)
     # Производитель
     manufacturer = ""
@@ -83,8 +86,6 @@ def good_view(props, SID):
         if propty['name'] != "Гарантия, мес":
             result_list.append(propty['name'])
             result_list.append(propty['value'])
-
-    print("done")
     return result_list
 
 
@@ -125,7 +126,7 @@ def ids_to_list(list_of_IDs, SID):
     for product_ID in ids:
         props = good_view(get_props(product_ID, SID), SID)
         # TODO statistics()
-        max_len = max(20000, length)
+        max_len = min(20000, length)
         list_of_info.append(props)
         c += 1
         print(str(round(c/max_len*100, 2))+"%")
@@ -173,54 +174,17 @@ def get_ways(SID=None, file_name="js_categories.json"):
     return json_all
 
 
-def find_way(category_number=1484, list_of_ids="", SID=get_key()):
-    if list_of_ids == "":
-        try:
-            with open('js_categories.json', "r") as read_file:
-                list_of_ids = json.load(read_file)
-        except:
-            list_of_ids = get_ways(SID)
-    str_out = ""
-    now_id = category_number
-    for category in list_of_ids:
-        if category['categoryID'] == now_id:
-            str_out = category['name']
-            parent_id = category['parentID']
-            break
-    while parent_id != 1:
-        for category in list_of_ids:
-            if category['categoryID'] == parent_id:
-                str_out = category['name']+" > "+str_out
-                parent_id = category['parentID']
-    # str_out = str_out[:-2]
-    # list_final = str_out.split(" > ")
-    # list_final.reverse()
-    # print(" > ".join(list_final))
-    return str_out
+def find_way(category_number):
+    """Возвращает путь к категории"""
+    return cat_list[str(category_number)][1]
 
 
 def category_code_to_name(code):
-    try:
-        with open('js_categories.json', "r") as read_file:
-            list_of_ids = json.load(read_file)
-    except:
-        list_of_ids = get_ways()
-    for category in list_of_ids:
-        if category['categoryID'] == code:
-            name = category['name']
-            return name
+    return cat_list[str(code)][0]
 
 
-def category_name_to_code(code):
-    try:
-        with open('js_categories.json', "r") as read_file:
-            list_of_ids = json.load(read_file)
-    except:
-        list_of_ids = get_ways()
-    for category in list_of_ids:
-        if category['name'] == code:
-            name = category['categoryID']
-            return name
+def category_name_to_code(name):
+    return cats_by_name[name][0]
 
 
 def numb_of_category(name, list_of_ids="", SID=get_key()):
@@ -238,29 +202,38 @@ def numb_of_category(name, list_of_ids="", SID=get_key()):
     return str_out
 
 
-def check_category_existing(name, list_of_ids="", SID=get_key()):
-    if list_of_ids == "":
-        try:
-            with open('js_categories.json', "r") as read_file:
-                list_of_ids = json.load(read_file)
-        except:
-            list_of_ids = get_ways(SID)
-    str_out = ""
-    for category in list_of_ids:
-        if category['name'] == name:
-            str_out = category['categoryID']
-            break
-    return str_out
+def check_category_existing(cat_name):
+    if cat_name in cats_by_name.keys():
+        return True
+    else:
+        return False
 
 
 def read_pricelist():
+    """Возвращает список таплов (имя, категория) всех товаров прайслиста"""
     with open('PriceList_short.json', "r",encoding="UTF8") as read_file:
         PRICELIST = tuple(json.load(read_file).values())
-    list_of_IDs = []
+    tuplist_IDs_cats = []
     for product in PRICELIST:
-        list_of_IDs.append((product['ProductID'],product['CategoryID']))
-    return list_of_IDs
-    # print(read_pricelist())
+        tuplist_IDs_cats.append((product['ProductID'],product['CategoryID']))
+    tuplist_IDs_cats.sort(key = lambda x: x[1])
+    return tuplist_IDs_cats
+
+
+def import_category(category_name):
+    """Принимает имя категории и возвращает список ID-шников "живых" товаров категории"""
+    cat_code = category_name_to_code(category_name)
+    tuplist = read_pricelist()
+
+    current_ids = []
+    for index in range(len(tuplist)):
+        if tuplist[index][1] == cat_code:
+            while tuplist[index][1] == cat_code:
+                current_ids.append(tuplist[index][0])
+                index+=1
+            break
+    return current_ids
+    # import_category("Навигаторы GPS")
 
 
 # def get_product(ID, SID):

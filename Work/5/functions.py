@@ -1,6 +1,6 @@
-import requests
 import json
-import xlwt
+import requests
+# import xlwt
 
 
 URL = "https://api.brain.com.ua/"   # Константа домена сайта
@@ -185,7 +185,7 @@ def category_code_to_name(code):
 
 def category_name_to_code(name):
     return cats_by_name[name][0]
-
+    
 
 def numb_of_category(name, list_of_ids="", SID=get_key()):
     if list_of_ids == "":

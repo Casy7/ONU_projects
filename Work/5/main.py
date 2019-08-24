@@ -95,7 +95,7 @@ def start_import():
                 functions.import_category(category), SID=SID)
             condition.configure(text="Категория \""+category+"\" загружена")
             export_list.append(cat_to_export)
-        with open("import_2.csv", "w", encoding="UTF8") as write_file:
+        with open("import_3.csv", "w", encoding="UTF8") as write_file:
             writer = csv.writer(write_file, delimiter=',')
             for line in export_list:
                 writer.writerow(line)

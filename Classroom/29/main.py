@@ -32,9 +32,8 @@ hex_of_color.pack(pady=5)
 frame.pack()
 
 
-colors = []
 for color_id in range(7):
-    colors.append(Color(color_id))
+    Color(color_id)
 
 
 root.mainloop()

@@ -1,0 +1,13 @@
+Z:\Repositories\testrepo1\C#\Lab1\bin\Debug\netcoreapp3.1\Lab1.exe
+Z:\Repositories\testrepo1\C#\Lab1\bin\Debug\netcoreapp3.1\Lab1.deps.json
+Z:\Repositories\testrepo1\C#\Lab1\bin\Debug\netcoreapp3.1\Lab1.runtimeconfig.json
+Z:\Repositories\testrepo1\C#\Lab1\bin\Debug\netcoreapp3.1\Lab1.runtimeconfig.dev.json
+Z:\Repositories\testrepo1\C#\Lab1\bin\Debug\netcoreapp3.1\Lab1.dll
+Z:\Repositories\testrepo1\C#\Lab1\bin\Debug\netcoreapp3.1\Lab1.pdb
+Z:\Repositories\testrepo1\C#\Lab1\obj\Debug\netcoreapp3.1\Lab1.csprojAssemblyReference.cache
+Z:\Repositories\testrepo1\C#\Lab1\obj\Debug\netcoreapp3.1\Lab1.AssemblyInfoInputs.cache
+Z:\Repositories\testrepo1\C#\Lab1\obj\Debug\netcoreapp3.1\Lab1.AssemblyInfo.cs
+Z:\Repositories\testrepo1\C#\Lab1\obj\Debug\netcoreapp3.1\Lab1.csproj.CoreCompileInputs.cache
+Z:\Repositories\testrepo1\C#\Lab1\obj\Debug\netcoreapp3.1\Lab1.dll
+Z:\Repositories\testrepo1\C#\Lab1\obj\Debug\netcoreapp3.1\Lab1.pdb
+Z:\Repositories\testrepo1\C#\Lab1\obj\Debug\netcoreapp3.1\Lab1.genruntimeconfig.cache
